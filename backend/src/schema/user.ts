@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
     },
     roster: {
       type: Types.ObjectId,
-      required: true,
+      default: null,
       ref: "rosters",
     },
   },
