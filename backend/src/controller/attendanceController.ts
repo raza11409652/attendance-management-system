@@ -39,6 +39,10 @@ class AttendanceController {
         date,
         roster: ob?.["roster"]?.["_id"],
         checkInDelay: 0,
+        image:req.body.image,
+        latitude:req.body.latitude?Number(req.body.latitude):0,
+        longitude:req.body.latitude?Number(req.body.longitude):0,
+
       };
       const response = await attendanceService.newAttendance(object);
       return res.json(response);

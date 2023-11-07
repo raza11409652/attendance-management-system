@@ -27,6 +27,18 @@ const attendanceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default: null,
+    },
+    latitude: {
+      type: Number,
+      default: 0,
+    },
+    longitude: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true, collection: "attendances", autoIndex: true }
 );

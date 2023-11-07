@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../slice";
 import { GetAttendanceLogsAction } from "../../slice/reducer/attendance";
-import { Pagination, Table } from "antd";
+import { Pagination, Table, Image } from "antd";
+import { AttendanceLog } from "../../types";
 
 interface Props {
   user?: string;
@@ -37,11 +38,19 @@ export const AttendanceLogs: React.FC<Props> = ({ user }) => {
             title: "Image",
             dataIndex: "image",
             key: "image",
+            render: (a: string) =>
+              a ? <Image width={"200px"} src={a} /> : "-",
           },
           {
             title: "Location",
-            dataIndex: "image",
-            key: "image",
+            dataIndex: "_id",
+            key: "_id",
+            render: (_: string, data: AttendanceLog) =>
+              data.latitude && data.longitude ? (
+                <>{`${data.latitude},${data.longitude}`}</>
+              ) : (
+                "-"
+              ),
           },
         ]}
         pagination={false}

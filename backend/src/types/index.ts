@@ -56,4 +56,7 @@ export interface CheckInAttendance {
   date: string;
   roster: Types.ObjectId;
   checkInDelay: number;
+  image:string;
+  latitude:number;
+  longitude:number
 }

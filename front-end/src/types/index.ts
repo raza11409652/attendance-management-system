@@ -47,6 +47,9 @@ export interface AttendanceLog {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  image?:string ;
+  latitude?:number;
+  longitude?:number
 }
 export interface GetAttendanceLogs {
   totalCount: number;

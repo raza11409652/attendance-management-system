@@ -5,11 +5,16 @@ import { EmployeeTable } from "./employeeTable";
 import { Button, Drawer, Pagination, Typography } from "antd";
 import { NewEmployeeForm } from "../../components/forms/newEmployeeForm";
 import { GetRostersAction } from "../../slice/reducer/roster";
+import { AttendanceLogs } from "../attendance-logs";
 // import { CreateEmployee } from "../../types";
 
 export const EmployeeContainer = () => {
   const { rosters } = useAppSelector((a) => a.roster);
   const [open, setOpen] = React.useState(false);
+  const [userId, setUser] = React.useState("");
+
+  const [openLogs, setOpenLogs] = React.useState(false);
+
   const dispatch = useAppDispatch();
   const { loader, records, totalCount, currentPage } = useAppSelector(
     (a) => a.employee
@@ -23,6 +28,11 @@ export const EmployeeContainer = () => {
   const onSuccess = () => {
     dispatch(GetEmployeeListAction(page));
     setOpen(false);
+  };
+  const showLogs = (a: string) => {
+    // console.log(a);
+    setUser(a);
+    setOpenLogs(true);
   };
   return (
     <>
@@ -40,7 +50,11 @@ export const EmployeeContainer = () => {
           </Button>
         </div>
         <div className="body">
-          <EmployeeTable loading={loader} records={records} />
+          <EmployeeTable
+            loading={loader}
+            records={records}
+            onClick={showLogs}
+          />
         </div>
         <div className="footer">
           <Pagination
@@ -58,6 +72,13 @@ export const EmployeeContainer = () => {
         onClose={() => setOpen(false)}
         open={open}
         title="Add new employee"
+      />
+      <Drawer
+        children={<AttendanceLogs user={userId} />}
+        width={"75vw"}
+        open={openLogs && userId.trim().length > 0}
+        onClose={() => setOpenLogs(false)}
+        title="View Logs"
       />
     </>
   );
