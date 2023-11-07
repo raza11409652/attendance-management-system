@@ -1,0 +1,32 @@
+.app-dashboard {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.app-dashboard>.container {
+    display: flex;
+    flex: 10;
+}
+
+.app-dashboard>.container>.left {
+    flex: 1.5;
+}
+
+.app-dashboard>.container>.right {
+    flex: 8.5;
+    /* padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem; */
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    max-height: calc(100vh - 2px);
+    background: #fafafa;
+    padding: 2rem;
+}
+
+.app-dashboard>.container>.right>.wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+}
